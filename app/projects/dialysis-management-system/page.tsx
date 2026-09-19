@@ -133,7 +133,7 @@ export default function DialysisCaseStudy() {
                 <div className={`${styles.browserDot} ${styles.dotGreen}`} />
               </div>
               <div className={styles.browserUrl}>
-                localhost:3000/statistics.html — Dashboard
+               Dialysis Operations — Operational Dashboard
               </div>
             </div>
             <Image
