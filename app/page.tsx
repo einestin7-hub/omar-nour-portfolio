@@ -38,7 +38,13 @@ const projects = [
     "PharmaOS",
     Boxes,
     "Modular pharmacy platform designed around product master, inventory, purchasing, pricing and controlled future transactional modules.",
-    ["Product master", "Inventory ledger", "Purchasing", "Pricing", "Migrations"],
+    [
+      "Product master",
+      "Inventory ledger",
+      "Purchasing",
+      "Pricing",
+      "Migrations",
+    ],
     "green",
   ],
   [
@@ -46,7 +52,13 @@ const projects = [
     "Noah Lab System",
     TestTube2,
     "Bilingual laboratory workflow covering patients, samples, assays, reference ranges, results and report generation.",
-    ["Patients", "Samples & assays", "Reference ranges", "Results", "Reports"],
+    [
+      "Patients",
+      "Samples & assays",
+      "Reference ranges",
+      "Results",
+      "Reports",
+    ],
     "violet",
   ],
   [
@@ -97,7 +109,13 @@ const projects = [
     "Human Resources Management System",
     UsersRound,
     "Dedicated HR management system for employee records and recurring workforce administration processes.",
-    ["Employee records", "Attendance", "Leave", "HR documents", "Permissions"],
+    [
+      "Employee records",
+      "Attendance",
+      "Leave",
+      "HR documents",
+      "Permissions",
+    ],
     "violet",
   ],
   [
@@ -119,7 +137,13 @@ const projects = [
     "Retail POS & Inventory Platform",
     Store,
     "Multi-branch retail architecture spanning sales, returns, warehouses, inventory movements, cashboxes, shifts and promotions.",
-    ["POS & returns", "Stock", "Cashbox", "Promotions", "Financial controls"],
+    [
+      "POS & returns",
+      "Stock",
+      "Cashbox",
+      "Promotions",
+      "Financial controls",
+    ],
     "orange",
   ],
   [
@@ -127,7 +151,13 @@ const projects = [
     "Hospital Management System",
     Layers3,
     "Enterprise architecture covering clinical, administrative, financial, inventory and HR domains with RBAC and auditability.",
-    ["Clinical", "Finance", "Inventory", "HR", "Identity & audit"],
+    [
+      "Clinical",
+      "Finance",
+      "Inventory",
+      "HR",
+      "Identity & audit",
+    ],
     "cyan",
   ],
 ];
@@ -233,10 +263,34 @@ export default function Home() {
                     <b>CASE STUDY / 01</b>
                   </div>
                 </Link>
+              ) : i === 1 ? (
+                <Link
+                  href="/projects/pharmaos"
+                  className="project-real-visual"
+                  aria-label="View PharmaOS case study"
+                >
+                  <Image
+                    src="/images/pharmaos/01-pos-hero.png"
+                    alt="PharmaOS pharmacy point of sale system"
+                    fill
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                  />
+
+                  <div className="project-real-overlay">
+                    <span>
+                      <Boxes size={22} />
+                      Pharmacy Operations
+                    </span>
+
+                    <b>CASE STUDY / 02</b>
+                  </div>
+                </Link>
               ) : (
                 <div className={"visual " + a}>
                   <I size={32} />
-                  <span>CASE STUDY / {String(i + 1).padStart(2, "0")}</span>
+                  <span>
+                    CASE STUDY / {String(i + 1).padStart(2, "0")}
+                  </span>
 
                   <div className="mock">
                     <i />
@@ -260,9 +314,13 @@ export default function Home() {
                   ))}
                 </div>
 
-                {i === 0 && (
+                {(i === 0 || i === 1) && (
                   <Link
-                    href="/projects/dialysis-management-system"
+                    href={
+                      i === 0
+                        ? "/projects/dialysis-management-system"
+                        : "/projects/pharmaos"
+                    }
                     className="case-study-link"
                   >
                     View Case Study
@@ -282,7 +340,10 @@ export default function Home() {
 
           <div className="skills">
             {[
-              ["Backend Engineering", "Node.js · Express · TypeScript · REST APIs"],
+              [
+                "Backend Engineering",
+                "Node.js · Express · TypeScript · REST APIs",
+              ],
               [
                 "Data & Persistence",
                 "PostgreSQL · SQLite · schema design · migrations",
