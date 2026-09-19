@@ -51,7 +51,7 @@
 
 .project-real-visual img {
   object-fit: cover;
-  object-position: top center;
+  object-position: center 18%;
   transition: transform 0.35s ease;
 }
 
