@@ -3,462 +3,607 @@
 import Image from "next/image";
 import Link from "next/link";
 import {
+  ArrowDown,
   ArrowUpRight,
+  Boxes,
+  Building2,
   CheckCircle2,
   Github,
-  Mail,
-  Stethoscope,
-  Boxes,
-  TestTube2,
-  Store,
-  Building2,
   HeartPulse,
+  Layers3,
+  Mail,
+  MapPin,
+  Menu,
+  Phone,
+  Stethoscope,
+  Store,
+  TestTube2,
   UsersRound,
   HardHat,
-  Layers3,
+  X,
 } from "lucide-react";
+import { useState } from "react";
 
 const projects = [
-  [
-    "Healthcare Operations",
-    "Dialysis Operations Management System",
-    Stethoscope,
-    "Offline-first platform for patient management, dialysis scheduling, machines and wards, sessions, billing, supplies and operational reporting.",
-    [
-      "Patients & referrals",
-      "Daily scheduler",
-      "Machines / wards",
-      "Billing",
-      "Statistics",
-    ],
-    "blue",
-  ],
-  [
-    "Pharmacy Platform",
-    "PharmaOS",
-    Boxes,
-    "Modular pharmacy platform designed around product master, inventory, purchasing, pricing and controlled future transactional modules.",
-    [
-      "Product master",
-      "Inventory ledger",
-      "Purchasing",
-      "Pricing",
-      "Migrations",
-    ],
-    "green",
-  ],
-  [
-    "Laboratory Workflow",
-    "Noah Lab System",
-    TestTube2,
-    "Bilingual laboratory workflow covering patients, samples, assays, reference ranges, results and report generation.",
-    [
-      "Patients",
-      "Samples & assays",
-      "Reference ranges",
-      "Results",
-      "Reports",
-    ],
-    "violet",
-  ],
-  [
-    "Retail ERP / POS",
-    "Footwear & Bags Management System",
-    Store,
-    "Multi-branch retail operations platform for footwear and bags, connecting POS, product variants, inventory, purchasing, returns, cashbox shifts and reporting.",
-    [
-      "Multi-branch POS",
-      "Product variants",
-      "Inventory",
-      "Purchasing",
-      "Returns",
-      "Cashbox / shifts",
-    ],
-    "orange",
-  ],
-  [
-    "Healthcare Platform",
-    "Integrated Medical Center System",
-    Building2,
-    "Integrated medical-center management platform connecting patient administration, clinical workflows and operational management.",
-    [
-      "Patient administration",
-      "Clinical workflows",
-      "Appointments / services",
-      "Operational records",
-      "RBAC",
-    ],
-    "cyan",
-  ],
-  [
-    "Clinical Workflow",
-    "Internal Medicine Clinic System",
-    HeartPulse,
-    "Focused clinic management system for internal-medicine workflows and longitudinal patient records.",
-    [
-      "Patient records",
-      "Visit history",
-      "Clinical follow-up",
-      "Investigations",
-      "Clinic workflow",
-    ],
-    "blue",
-  ],
-  [
-    "Enterprise HR",
-    "Human Resources Management System",
-    UsersRound,
-    "Dedicated HR management system for employee records and recurring workforce administration processes.",
-    [
-      "Employee records",
-      "Attendance",
-      "Leave",
-      "HR documents",
-      "Permissions",
-    ],
-    "violet",
-  ],
-  [
-    "HSE / OHS",
-    "Occupational Health & Safety System",
-    HardHat,
-    "Management system focused on occupational health and safety processes, documentation and operational follow-up.",
-    [
-      "Safety records",
-      "Inspections",
-      "Risk / incidents",
-      "Corrective follow-up",
-      "Reporting",
-    ],
-    "green",
-  ],
-  [
-    "Enterprise Architecture",
-    "Hospital Management System",
-    Layers3,
-    "Enterprise architecture covering clinical, administrative, financial, inventory and HR domains with RBAC and auditability.",
-    [
-      "Clinical",
-      "Finance",
-      "Inventory",
-      "HR",
-      "Identity & audit",
-    ],
-    "cyan",
-  ],
+  {
+    category: "Healthcare Operations",
+    title: "Dialysis Operations Management System",
+    description:
+      "Offline-first platform coordinating patients, dialysis scheduling, machines, sessions, billing, supplies and operational reporting.",
+    tags: ["Dialysis", "Scheduling", "Billing", "Operations"],
+    image: "/images/dialysis/01-dashboard-hero.png",
+    href: "/projects/dialysis-management-system",
+    number: "01",
+    icon: Stethoscope,
+    featured: true,
+  },
+  {
+    category: "Pharmacy Operations",
+    title: "PharmaOS",
+    description:
+      "Integrated pharmacy operations platform connecting product master, inventory, purchasing, pricing, point-of-sale and financial workflows.",
+    tags: ["Inventory", "Purchasing", "POS", "Pricing"],
+    image: "/images/pharmaos/01-pos-hero.png",
+    href: "/projects/pharmaos",
+    number: "02",
+    icon: Boxes,
+    featured: true,
+  },
+  {
+    category: "Retail Operations",
+    title: "Footwear & Bags Management System",
+    description:
+      "Multi-branch retail platform connecting point-of-sale, product variants, inventory, purchasing, returns, cashbox shifts and reporting.",
+    tags: ["Multi-Branch", "POS", "Inventory", "Cashbox"],
+    image: "/images/retail-pos/01-dashboard.png",
+    href: "/projects/retail-pos",
+    number: "03",
+    icon: Store,
+    featured: true,
+  },
+  {
+    category: "Medical Center Operations",
+    title: "Integrated Medical Center System",
+    description:
+      "Multi-department medical-center platform connecting patients, appointments, reception, billing, day surgery, inventory and reporting.",
+    tags: ["Appointments", "Reception", "Billing", "Inventory"],
+    image: "/images/medical-center/01-dashboard.png",
+    href: "/projects/integrated-medical-center",
+    number: "04",
+    icon: Building2,
+    featured: true,
+  },
+  {
+    category: "Clinical Workflow",
+    title: "Internal Medicine & Nephrology Clinic",
+    description:
+      "Longitudinal clinical management system for patient records, structured encounters, chronic disease tracking and prescriptions.",
+    tags: ["Patient Records", "ICD-10", "Clinical History", "Rx"],
+    image: "/images/internal-medicine-clinic/01-dashboard.png",
+    href: "/projects/internal-medicine-clinic",
+    number: "05",
+    icon: HeartPulse,
+    featured: true,
+  },
+];
+
+const upcomingProjects = [
+  {
+    category: "Laboratory Workflow",
+    title: "Noah Lab System",
+    icon: TestTube2,
+    description:
+      "Bilingual laboratory workflow covering patients, samples, assays, reference ranges, results and reporting.",
+  },
+  {
+    category: "Enterprise HR",
+    title: "Human Resources Management System",
+    icon: UsersRound,
+    description:
+      "Workforce administration platform for employee records and recurring HR operations.",
+  },
+  {
+    category: "HSE / OHS",
+    title: "Occupational Health & Safety System",
+    icon: HardHat,
+    description:
+      "Operational system for safety records, inspections, incidents and corrective follow-up.",
+  },
+  {
+    category: "Enterprise Architecture",
+    title: "Hospital Management System",
+    icon: Layers3,
+    description:
+      "Enterprise architecture spanning clinical, administrative, financial, inventory and HR domains.",
+  },
+];
+
+const capabilities = [
+  {
+    number: "01",
+    title: "Backend Engineering",
+    text: "Node.js · Express · TypeScript · REST APIs",
+  },
+  {
+    number: "02",
+    title: "Data Architecture",
+    text: "PostgreSQL · SQLite · schema design · migrations",
+  },
+  {
+    number: "03",
+    title: "Operational Systems",
+    text: "ERP workflows · POS · inventory · billing",
+  },
+  {
+    number: "04",
+    title: "Healthcare Software",
+    text: "Clinical workflows · dialysis · clinics · medical centers",
+  },
+  {
+    number: "05",
+    title: "Security",
+    text: "RBAC · JWT · audit trails · validation",
+  },
+  {
+    number: "06",
+    title: "Software Delivery",
+    text: "Architecture · deployment · maintainability",
+  },
 ];
 
 export default function Home() {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <main>
-      <nav>
-        <a className="brand" href="#top">
+    <main className="portfolio">
+      {/* NAVIGATION */}
+      <nav className="portfolio-nav">
+        <a className="portfolio-brand" href="#top">
           <span>ON</span>
-          <b>Omar Nour</b>
+          <div>
+            <b>Omar Nour</b>
+            <small>Software Engineer</small>
+          </div>
         </a>
 
-        <div>
+        <div className="desktop-nav">
           <a href="#work">Work</a>
-          <a href="#skills">Capabilities</a>
+          <a href="#capabilities">Capabilities</a>
           <a href="#about">About</a>
-          <a className="cta" href="#contact">
-            Start a project <ArrowUpRight size={15} />
+
+          <a className="nav-contact" href="#contact">
+            Let&apos;s talk
+            <ArrowUpRight size={15} />
           </a>
         </div>
+
+        <button
+          className="mobile-menu-button"
+          type="button"
+          aria-label="Toggle navigation"
+          onClick={() => setMenuOpen((value) => !value)}
+        >
+          {menuOpen ? <X size={22} /> : <Menu size={22} />}
+        </button>
+
+        {menuOpen && (
+          <div className="mobile-nav">
+            <a href="#work" onClick={() => setMenuOpen(false)}>
+              Work
+            </a>
+            <a href="#capabilities" onClick={() => setMenuOpen(false)}>
+              Capabilities
+            </a>
+            <a href="#about" onClick={() => setMenuOpen(false)}>
+              About
+            </a>
+            <a href="#contact" onClick={() => setMenuOpen(false)}>
+              Contact
+            </a>
+          </div>
+        )}
       </nav>
 
-      <section id="top" className="hero shell">
-        <small>● AVAILABLE FOR SOFTWARE PROJECTS</small>
+      {/* HERO */}
+      <section id="top" className="portfolio-hero">
+        <div className="hero-copy">
+          <div className="availability">
+            <i />
+            Available for software projects
+          </div>
 
-        <h1>
-          I build operational software that turns{" "}
-          <em>complex workflows</em> into reliable systems.
-        </h1>
+          <p className="hero-kicker">FULL-STACK SOFTWARE ENGINEER</p>
 
-        <p>
-          Full-Stack Software Engineer focused on healthcare, business
-          operations, retail, HR, safety, inventory, billing and data-intensive
-          management platforms.
-        </p>
+          <h1>
+            Building software for
+            <span> real operations.</span>
+          </h1>
 
-        <div className="actions">
-          <a className="primary" href="#work">
-            Explore selected work <ArrowUpRight size={17} />
-          </a>
+          <p className="hero-description">
+            I design and build reliable operational software for healthcare,
+            retail and business environments — turning complex workflows into
+            structured, maintainable systems.
+          </p>
 
-          <a
-            className="secondary"
-            href="https://github.com/einestin7-hub"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Github size={17} /> GitHub
-          </a>
+          <div className="hero-actions">
+            <a className="button-primary" href="#work">
+              Explore selected work
+              <ArrowDown size={17} />
+            </a>
+
+            <a
+              className="button-secondary"
+              href="https://github.com/einestin7-hub"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Github size={18} />
+              GitHub
+            </a>
+          </div>
+
+          <div className="hero-meta">
+            <span>
+              <MapPin size={16} />
+              Luxor, Egypt
+            </span>
+
+            <a href="tel:+201003253425">
+              <Phone size={16} />
+              +20 100 325 3425
+            </a>
+          </div>
         </div>
 
-        <div className="stats">
-          <b>
-            9<span>Featured systems & architectures</span>
-          </b>
+        <div className="hero-portrait-wrap">
+          <div className="portrait-accent portrait-accent-one" />
+          <div className="portrait-accent portrait-accent-two" />
 
-          <b>
-            Full-stack<span>Architecture to deployment</span>
-          </b>
+          <div className="hero-portrait">
+            <Image
+              src="/images/profile/omar-nour.png"
+              alt="Omar Nour — Full-Stack Software Engineer"
+              fill
+              priority
+              sizes="(max-width: 900px) 90vw, 44vw"
+            />
+          </div>
 
-          <b>
-            Arabic / English<span>Bilingual product experience</span>
-          </b>
+          <div className="portrait-card">
+            <span>FOCUS</span>
+            <b>Operational Software</b>
+            <small>Healthcare · Retail · Business Systems</small>
+          </div>
         </div>
       </section>
 
-      <section id="work" className="shell section">
-        <header>
+      {/* QUICK PROFILE */}
+      <section className="profile-strip">
+        <div>
+          <small>01 / DISCIPLINE</small>
+          <strong>Full-Stack Engineering</strong>
+        </div>
+
+        <div>
+          <small>02 / SPECIALIZATION</small>
+          <strong>Operational Systems</strong>
+        </div>
+
+        <div>
+          <small>03 / PRODUCT EXPERIENCE</small>
+          <strong>Arabic & English</strong>
+        </div>
+
+        <div>
+          <small>04 / DELIVERY</small>
+          <strong>Architecture → Deployment</strong>
+        </div>
+      </section>
+
+      {/* FEATURED WORK */}
+      <section id="work" className="portfolio-section work-section">
+        <div className="section-heading">
           <div>
             <small>SELECTED WORK</small>
-            <h2>Systems built around real operations.</h2>
+            <h2>
+              Systems designed around
+              <br />
+              <em>real workflows.</em>
+            </h2>
           </div>
 
           <p>
-            Independent and technical projects demonstrating workflow modeling,
-            system architecture and implementation across multiple operational
-            domains.
+            A selection of operational software projects covering healthcare,
+            pharmacy, retail and multi-department management.
           </p>
-        </header>
+        </div>
 
-        <div className="grid">
-          {projects.map(([k, t, I, d, c, a]: any, i) => (
-            <article key={t}>
-              {i === 0 ? (
+        <div className="featured-projects">
+          {projects.map((project, index) => {
+            const Icon = project.icon;
+
+            return (
+              <article
+                className={`featured-project ${
+                  index === 0 ? "featured-project-large" : ""
+                }`}
+                key={project.title}
+              >
                 <Link
-                  href="/projects/dialysis-management-system"
-                  className="project-real-visual"
-                  aria-label="View Dialysis Operations Management System case study"
+                  href={project.href}
+                  className="project-image"
+                  aria-label={`View ${project.title} case study`}
                 >
                   <Image
-                    src="/images/dialysis/01-dashboard-hero.png"
-                    alt="Dialysis Operations Management System operational dashboard"
+                    src={project.image}
+                    alt={`${project.title} interface`}
                     fill
-                    priority
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                  />
-
-                  <div className="project-real-overlay">
-                    <span>
-                      <Stethoscope size={22} />
-                      Healthcare Operations
-                    </span>
-
-                    <b>CASE STUDY / 01</b>
-                  </div>
-                </Link>
-              ) : i === 1 ? (
-                <Link
-                  href="/projects/pharmaos"
-                  className="project-real-visual"
-                  aria-label="View PharmaOS case study"
-                >
-                  <Image
-                    src="/images/pharmaos/01-pos-hero.png"
-                    alt="PharmaOS pharmacy point of sale system"
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                  />
-
-                  <div className="project-real-overlay">
-                    <span>
-                      <Boxes size={22} />
-                      Pharmacy Operations
-                    </span>
-
-                    <b>CASE STUDY / 02</b>
-                  </div>
-                </Link>
-                            ) : i === 3 ? (
-                <Link
-                  href="/projects/retail-pos"
-                  className="project-real-visual"
-                  aria-label="View Footwear and Bags Retail Management System case study"
-                >
-                  <Image
-                    src="/images/retail-pos/01-dashboard.png"
-                    alt="Footwear and Bags Retail Management System dashboard"
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                  />
-
-                  <div className="project-real-overlay">
-                    <span>
-                      <Store size={22} />
-                      Retail Operations
-                    </span>
-
-                    <b>CASE STUDY / 04</b>
-                  </div>
-                </Link>
-              ) : i === 5 ? (
-                <Link
-                  href="/projects/internal-medicine-clinic"
-                  className="project-real-visual"
-                  aria-label="View Internal Medicine and Nephrology Clinic System case study"
-                >
-                  <Image
-                    src="/images/internal-medicine-clinic/01-dashboard.png"
-                    alt="Internal Medicine and Nephrology Clinic System dashboard"
-                    fill
-                    sizes="(max-width: 800px) 100vw, 50vw"
-                  />
-
-                  <div className="project-real-overlay">
-                    <span>
-                      <HeartPulse size={22} />
-                      Clinical Workflow
-                    </span>
-
-                    <b>CASE STUDY / 06</b>
-                  </div>
-                </Link>
-              ) : (
-                <div className={"visual " + a}>
-                  <I size={32} />
-
-                  <span>
-                    CASE STUDY / {String(i + 1).padStart(2, "0")}
-                  </span>
-
-                  <div className="mock">
-                    <i />
-                    <i />
-                    <i />
-                  </div>
-                </div>
-              )}
-
-              <div className="body">
-                <small>{k}</small>
-                <h3>{t}</h3>
-                <p>{d}</p>
-
-                <div className="caps">
-                  {c.map((x: string) => (
-                    <span key={x}>
-                      <CheckCircle2 size={13} />
-                      {x}
-                    </span>
-                  ))}
-                </div>
-
-                {(i === 0 || i === 1 || i === 3 || i === 5) && (
-                  <Link
-                    href={
-                      i === 0
-                        ? "/projects/dialysis-management-system"
-                        : i === 1
-                          ? "/projects/pharmaos"
-                          : i === 3
-                            ? "/projects/retail-pos"
-                            : "/projects/internal-medicine-clinic"
+                    priority={index === 0}
+                    sizes={
+                      index === 0
+                        ? "(max-width: 900px) 100vw, 66vw"
+                        : "(max-width: 900px) 100vw, 50vw"
                     }
-                    className="case-study-link"
-                  >
+                  />
+
+                  <div className="project-image-shade" />
+
+                  <div className="project-number">
+                    CASE STUDY / {project.number}
+                  </div>
+
+                  <div className="project-category-overlay">
+                    <Icon size={20} />
+                    {project.category}
+                  </div>
+                </Link>
+
+                <div className="project-content">
+                  <div className="project-title-row">
+                    <div>
+                      <small>{project.category}</small>
+                      <h3>{project.title}</h3>
+                    </div>
+
+                    <Link
+                      href={project.href}
+                      className="project-arrow"
+                      aria-label={`Open ${project.title}`}
+                    >
+                      <ArrowUpRight size={20} />
+                    </Link>
+                  </div>
+
+                  <p>{project.description}</p>
+
+                  <div className="project-tags">
+                    {project.tags.map((tag) => (
+                      <span key={tag}>
+                        <CheckCircle2 size={12} />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+
+                  <Link href={project.href} className="view-case-study">
                     View Case Study
                     <ArrowUpRight size={15} />
                   </Link>
-                )}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+
+      {/* MORE SYSTEMS */}
+      <section className="portfolio-section more-work">
+        <div className="more-work-heading">
+          <small>MORE SYSTEMS & ARCHITECTURE</small>
+          <h2>Additional engineering work.</h2>
+        </div>
+
+        <div className="more-project-grid">
+          {upcomingProjects.map(({ category, title, icon: Icon, description }) => (
+            <article key={title}>
+              <div className="more-project-icon">
+                <Icon size={23} />
               </div>
+
+              <small>{category}</small>
+              <h3>{title}</h3>
+              <p>{description}</p>
+
+              <span className="case-study-status">Case study in preparation</span>
             </article>
           ))}
         </div>
       </section>
 
-      <section id="skills" className="dark">
-        <div className="shell">
-          <small>CAPABILITIES</small>
-          <h2>Engineering beyond the interface.</h2>
+      {/* CAPABILITIES */}
+      <section id="capabilities" className="capabilities-section">
+        <div className="capabilities-inner">
+          <div className="capabilities-intro">
+            <small>CAPABILITIES</small>
 
-          <div className="skills">
-            {[
-              [
-                "Backend Engineering",
-                "Node.js · Express · TypeScript · REST APIs",
-              ],
-              [
-                "Data & Persistence",
-                "PostgreSQL · SQLite · schema design · migrations",
-              ],
-              [
-                "Business Systems",
-                "ERP workflows · POS · inventory · billing · operations",
-              ],
-              ["Security", "RBAC · JWT · audit trails · validation"],
-              [
-                "Healthcare",
-                "Clinical workflows · laboratory · dialysis · medical centers",
-              ],
-              [
-                "Delivery",
-                "VPS deployment · operational architecture · maintainability",
-              ],
-            ].map((x, i) => (
-              <div key={x[0]}>
-                <span>0{i + 1}</span>
-                <h3>{x[0]}</h3>
-                <p>{x[1]}</p>
-              </div>
+            <h2>
+              Engineering beyond
+              <br />
+              the interface.
+            </h2>
+
+            <p>
+              I focus on the operational logic underneath the UI: data models,
+              workflows, APIs, permissions, transactional behavior and
+              maintainable system architecture.
+            </p>
+          </div>
+
+          <div className="capability-list">
+            {capabilities.map((capability) => (
+              <article key={capability.number}>
+                <span>{capability.number}</span>
+
+                <div>
+                  <h3>{capability.title}</h3>
+                  <p>{capability.text}</p>
+                </div>
+              </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="about" className="shell section about">
-        <div>
-          <small>ABOUT</small>
-          <h2>From requirements to working software.</h2>
+      {/* ABOUT */}
+      <section id="about" className="portfolio-section about-new">
+        <div className="about-label">
+          <small>ABOUT ME</small>
         </div>
 
-        <div>
-          <p>
-            I design and develop management platforms where multiple workflows,
-            roles and datasets have to work together consistently.
-          </p>
+        <div className="about-main">
+          <h2>
+            I approach software as an
+            <em> operational system,</em> not just a collection of screens.
+          </h2>
 
-          <p>
-            My project work spans healthcare operations, medical centers and
-            clinics, laboratories, pharmacy, retail/POS, HR, occupational
-            health & safety and enterprise system architecture.
-          </p>
-        </div>
-      </section>
+          <div className="about-columns">
+            <p>
+              I&apos;m Omar Nour, a Full-Stack Software Engineer based in Luxor,
+              Egypt. My work focuses on management platforms where multiple
+              workflows, users and datasets need to operate together
+              consistently.
+            </p>
 
-      <section id="contact" className="shell contact">
-        <small>LET&apos;S BUILD</small>
-        <h2>Have an operational problem that needs software?</h2>
-
-        <p>
-          Available to discuss management platforms, internal systems and
-          full-stack web projects.
-        </p>
-
-        <div className="actions">
-          <a className="primary" href="mailto:">
-            <Mail size={17} /> Contact me
-          </a>
-
-          <a
-            className="secondary"
-            href="https://github.com/einestin7-hub"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <Github size={17} /> GitHub
-          </a>
+            <p>
+              My projects span healthcare operations, clinics, medical centers,
+              pharmacy, retail/POS, inventory, billing, HR, occupational health
+              and safety, and enterprise system architecture.
+            </p>
+          </div>
         </div>
       </section>
 
-      <footer>
-        <div className="shell">
-          © 2026 Omar Nour
+      {/* APPROACH */}
+      <section className="approach-section">
+        <div className="approach-inner">
+          <small>HOW I THINK ABOUT SOFTWARE</small>
+
+          <div className="approach-grid">
+            <div>
+              <span>01</span>
+              <h3>Understand the operation</h3>
+              <p>
+                Model the actual people, processes, constraints and business
+                rules before designing the interface.
+              </p>
+            </div>
+
+            <div>
+              <span>02</span>
+              <h3>Design the system</h3>
+              <p>
+                Translate workflows into data models, boundaries, APIs and
+                reliable transactional behavior.
+              </p>
+            </div>
+
+            <div>
+              <span>03</span>
+              <h3>Build for daily use</h3>
+              <p>
+                Deliver software that remains understandable, maintainable and
+                useful under real operational conditions.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* CONTACT */}
+      <section id="contact" className="contact-new">
+        <div className="contact-inner">
+          <div>
+            <small>LET&apos;S BUILD SOMETHING USEFUL</small>
+
+            <h2>
+              Have an operational problem
+              <br />
+              that needs software?
+            </h2>
+          </div>
+
+          <div className="contact-details">
+            <p>
+              Available to discuss management platforms, internal systems,
+              healthcare software and full-stack web projects.
+            </p>
+
+            <div className="contact-links">
+              <a href="tel:+201003253425">
+                <span>
+                  <Phone size={18} />
+                  Phone
+                </span>
+
+                <b>+20 100 325 3425</b>
+              </a>
+
+              <div>
+                <span>
+                  <MapPin size={18} />
+                  Location
+                </span>
+
+                <b>Luxor, Egypt</b>
+              </div>
+
+              <a
+                href="https://github.com/einestin7-hub"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>
+                  <Github size={18} />
+                  GitHub
+                </span>
+
+                <b>@einestin7-hub</b>
+              </a>
+            </div>
+
+            <div className="contact-actions">
+              <a className="contact-phone" href="tel:+201003253425">
+                <Phone size={17} />
+                Call me
+              </a>
+
+              <a
+                className="contact-github"
+                href="https://github.com/einestin7-hub"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <Github size={17} />
+                View GitHub
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="portfolio-footer">
+        <div>
+          <b>Omar Nour</b>
           <span>Full-Stack Software Engineer</span>
         </div>
+
+        <p>© 2026 Omar Nour. Built around real operational software.</p>
+
+        <a href="#top">
+          Back to top
+          <ArrowUpRight size={14} />
+        </a>
       </footer>
     </main>
   );
