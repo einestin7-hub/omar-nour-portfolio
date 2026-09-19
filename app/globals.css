@@ -1,1 +1,40 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#f6f8fb;color:#102030;font-family:Inter,system-ui,sans-serif}.shell{max-width:1180px;margin:auto;padding-left:28px;padding-right:28px}nav{height:76px;max-width:1180px;margin:auto;padding:0 28px;display:flex;align-items:center;justify-content:space-between}nav div{display:flex;gap:28px;align-items:center}nav a{text-decoration:none;color:#4b5866;font-size:14px;font-weight:650}.brand{display:flex;gap:10px;align-items:center;color:#102030!important}.brand span{width:38px;height:38px;background:#102030;color:white;display:grid;place-items:center;border-radius:10px}.cta,.primary{background:#4361ee!important;color:white!important;padding:13px 17px;border-radius:9px;display:inline-flex;gap:7px;align-items:center}.hero{padding-top:100px;padding-bottom:90px}.hero small,.section small,.dark small,.contact small{color:#4361ee;font-weight:800;letter-spacing:.13em}.hero h1{font-size:clamp(48px,6.2vw,82px);line-height:1.02;letter-spacing:-.055em;max-width:1080px;margin:22px 0}.hero h1 em{font-style:normal;color:#4361ee}.hero>p{font-size:20px;color:#617080;max-width:760px;line-height:1.6}.actions{display:flex;gap:12px;margin-top:30px}.actions a{text-decoration:none;font-weight:750}.secondary{padding:13px 17px;border:1px solid #d6dde5;border-radius:9px;color:#172737;background:white;display:inline-flex;gap:7px;align-items:center}.stats{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid #dde4eb;margin-top:75px;padding-top:26px}.stats b{font-size:19px}.stats span{display:block;color:#7c8996;font-size:11px;margin-top:5px;font-weight:500}.section{padding-top:95px;padding-bottom:95px}.section header{display:grid;grid-template-columns:1.2fr .8fr;gap:80px;align-items:end;margin-bottom:45px}.section h2,.dark h2,.contact h2{font-size:42px;letter-spacing:-.04em;margin:9px 0}.section header p,.about p,.contact p{color:#657483;line-height:1.7}.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}.grid article{background:white;border:1px solid #e0e6ec;border-radius:17px;overflow:hidden}.visual{height:245px;padding:23px;color:white;display:flex;justify-content:space-between;position:relative;overflow:hidden}.visual>span{font-size:10px;letter-spacing:.1em;opacity:.75}.blue{background:linear-gradient(135deg,#183b73,#4361ee)}.green{background:linear-gradient(135deg,#155e4b,#2a9d8f)}.violet{background:linear-gradient(135deg,#4c1d95,#7c3aed)}.orange{background:linear-gradient(135deg,#9a3412,#ea580c)}.cyan{background:linear-gradient(135deg,#164e63,#0891b2)}.mock{position:absolute;left:55px;right:-10px;bottom:-20px;height:60%;background:#f5f7fa;border-radius:12px 0 0;display:flex;gap:10px;padding:22px}.mock i{height:48px;background:#e1e7ed;flex:1;border-radius:7px}.body{padding:28px}.body small{color:#4361ee;font-weight:800;letter-spacing:.08em}.body h3{font-size:24px;letter-spacing:-.025em;margin:9px 0}.body p{font-size:14px;line-height:1.65;color:#657483}.caps{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}.caps span{display:flex;align-items:center;gap:5px;background:#f1f4f7;padding:6px 8px;border-radius:6px;font-size:10px}.caps svg{color:#2a9d8f}.dark{background:#0b1724;color:white;padding:100px 0}.dark h2{margin-bottom:45px}.skills{display:grid;grid-template-columns:repeat(3,1fr);border-left:1px solid #273748;border-top:1px solid #273748}.skills div{padding:30px;border-right:1px solid #273748;border-bottom:1px solid #273748}.skills span{font-size:10px;color:#728296}.skills h3{margin-top:28px}.skills p{color:#95a4b4;font-size:12px;line-height:1.6}.about{display:grid;grid-template-columns:1fr 1fr;gap:100px}.about p{font-size:17px}.contact{text-align:center;padding-top:110px;padding-bottom:110px}.contact h2{font-size:50px;max-width:780px;margin:10px auto}.contact .actions{justify-content:center}footer{border-top:1px solid #dde4eb;padding:28px 0;color:#7b8997;font-size:12px}footer .shell{display:flex;justify-content:space-between}@media(max-width:760px){nav div{display:none}.hero{padding-top:65px}.hero h1{font-size:47px}.stats,.grid,.skills,.section header,.about{grid-template-columns:1fr}.stats{gap:20px}.section header,.about{gap:20px}.visual{height:220px}.contact h2{font-size:37px}.actions{flex-wrap:wrap}.shell{padding-left:20px;padding-right:20px}}
+/* Dialysis project case study CTA */
+.case-study-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 22px;
+  padding: 11px 16px;
+  width: fit-content;
+
+  border: 1px solid rgba(37, 99, 235, 0.22);
+  border-radius: 10px;
+
+  background: rgba(37, 99, 235, 0.06);
+  color: #2563eb;
+
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+
+  text-decoration: none;
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.case-study-link:hover {
+  transform: translateY(-2px);
+  background: rgba(37, 99, 235, 0.11);
+  border-color: rgba(37, 99, 235, 0.38);
+}
+
+.case-study-link svg {
+  transition: transform 0.2s ease;
+}
+
+.case-study-link:hover svg {
+  transform: translate(2px, -2px);
+}
