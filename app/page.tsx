@@ -65,14 +65,14 @@ const projects = [
     "Retail ERP / POS",
     "Footwear & Bags Management System",
     Store,
-    "Operational retail system for footwear and bags, designed around multi-branch sales, purchasing, inventory, warehouses, returns, cash control and product variants.",
+    "Multi-branch retail operations platform for footwear and bags, connecting POS, product variants, inventory, purchasing, returns, cashbox shifts and reporting.",
     [
       "Multi-branch POS",
-      "Purchasing",
+      "Product variants",
       "Inventory",
+      "Purchasing",
       "Returns",
-      "Cashboxes / shifts",
-      "Barcode workflows",
+      "Cashbox / shifts",
     ],
     "orange",
   ],
@@ -131,20 +131,6 @@ const projects = [
       "Reporting",
     ],
     "green",
-  ],
-  [
-    "Retail Operations",
-    "Retail POS & Inventory Platform",
-    Store,
-    "Multi-branch retail architecture spanning sales, returns, warehouses, inventory movements, cashboxes, shifts and promotions.",
-    [
-      "POS & returns",
-      "Stock",
-      "Cashbox",
-      "Promotions",
-      "Financial controls",
-    ],
-    "orange",
   ],
   [
     "Enterprise Architecture",
@@ -212,11 +198,13 @@ export default function Home() {
 
         <div className="stats">
           <b>
-            10<span>Featured systems & architectures</span>
+            9<span>Featured systems & architectures</span>
           </b>
+
           <b>
             Full-stack<span>Architecture to deployment</span>
           </b>
+
           <b>
             Arabic / English<span>Bilingual product experience</span>
           </b>
@@ -285,9 +273,32 @@ export default function Home() {
                     <b>CASE STUDY / 02</b>
                   </div>
                 </Link>
+              ) : i === 3 ? (
+                <Link
+                  href="/projects/retail-pos"
+                  className="project-real-visual"
+                  aria-label="View Footwear and Bags Retail Management System case study"
+                >
+                  <Image
+                    src="/images/retail-pos/01-dashboard.png"
+                    alt="Footwear and Bags Retail Management System dashboard"
+                    fill
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                  />
+
+                  <div className="project-real-overlay">
+                    <span>
+                      <Store size={22} />
+                      Retail Operations
+                    </span>
+
+                    <b>CASE STUDY / 04</b>
+                  </div>
+                </Link>
               ) : (
                 <div className={"visual " + a}>
                   <I size={32} />
+
                   <span>
                     CASE STUDY / {String(i + 1).padStart(2, "0")}
                   </span>
@@ -314,12 +325,14 @@ export default function Home() {
                   ))}
                 </div>
 
-                {(i === 0 || i === 1) && (
+                {(i === 0 || i === 1 || i === 3) && (
                   <Link
                     href={
                       i === 0
                         ? "/projects/dialysis-management-system"
-                        : "/projects/pharmaos"
+                        : i === 1
+                          ? "/projects/pharmaos"
+                          : "/projects/retail-pos"
                     }
                     className="case-study-link"
                   >
