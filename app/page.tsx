@@ -11,7 +11,7 @@ import {
   Github,
   HeartPulse,
   Layers3,
-  Mail,
+  MessageCircle,
   MapPin,
   Menu,
   Phone,
@@ -142,7 +142,7 @@ const capabilities = [
   {
     number: "05",
     title: "Security",
-    text: "RBAC · JWT · audit trails · validation",
+    text: "Access control · authentication · auditability · validation",
   },
   {
     number: "06",
@@ -212,7 +212,10 @@ export default function Home() {
             Available for software projects
           </div>
 
-          <p className="hero-kicker">FULL-STACK SOFTWARE ENGINEER</p>
+          <div className="hero-identity">
+            <strong>Omar Nour</strong>
+            <span>FULL-STACK SOFTWARE ENGINEER</span>
+          </div>
 
           <h1>
             Building software for
@@ -251,6 +254,15 @@ export default function Home() {
             <a href="tel:+201003253425">
               <Phone size={16} />
               +20 100 325 3425
+            </a>
+
+            <a
+              href="https://wa.me/201003253425?text=Hi%20Omar%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20software%20project."
+              target="_blank"
+              rel="noreferrer"
+            >
+              <MessageCircle size={16} />
+              WhatsApp
             </a>
           </div>
         </div>
@@ -548,6 +560,19 @@ export default function Home() {
                 <b>+20 100 325 3425</b>
               </a>
 
+              <a
+                href="https://wa.me/201003253425?text=Hi%20Omar%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20software%20project."
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span>
+                  <MessageCircle size={18} />
+                  WhatsApp
+                </span>
+
+                <b>Start a conversation</b>
+              </a>
+
               <div>
                 <span>
                   <MapPin size={18} />
@@ -575,6 +600,16 @@ export default function Home() {
               <a className="contact-phone" href="tel:+201003253425">
                 <Phone size={17} />
                 Call me
+              </a>
+
+              <a
+                className="contact-whatsapp"
+                href="https://wa.me/201003253425?text=Hi%20Omar%2C%20I%20found%20your%20portfolio%20and%20I%27d%20like%20to%20discuss%20a%20software%20project."
+                target="_blank"
+                rel="noreferrer"
+              >
+                <MessageCircle size={17} />
+                WhatsApp
               </a>
 
               <a
