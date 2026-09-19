@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -37,13 +38,7 @@ const projects = [
     "PharmaOS",
     Boxes,
     "Modular pharmacy platform designed around product master, inventory, purchasing, pricing and controlled future transactional modules.",
-    [
-      "Product master",
-      "Inventory ledger",
-      "Purchasing",
-      "Pricing",
-      "Migrations",
-    ],
+    ["Product master", "Inventory ledger", "Purchasing", "Pricing", "Migrations"],
     "green",
   ],
   [
@@ -51,13 +46,7 @@ const projects = [
     "Noah Lab System",
     TestTube2,
     "Bilingual laboratory workflow covering patients, samples, assays, reference ranges, results and report generation.",
-    [
-      "Patients",
-      "Samples & assays",
-      "Reference ranges",
-      "Results",
-      "Reports",
-    ],
+    ["Patients", "Samples & assays", "Reference ranges", "Results", "Reports"],
     "violet",
   ],
   [
@@ -108,13 +97,7 @@ const projects = [
     "Human Resources Management System",
     UsersRound,
     "Dedicated HR management system for employee records and recurring workforce administration processes.",
-    [
-      "Employee records",
-      "Attendance",
-      "Leave",
-      "HR documents",
-      "Permissions",
-    ],
+    ["Employee records", "Attendance", "Leave", "HR documents", "Permissions"],
     "violet",
   ],
   [
@@ -136,13 +119,7 @@ const projects = [
     "Retail POS & Inventory Platform",
     Store,
     "Multi-branch retail architecture spanning sales, returns, warehouses, inventory movements, cashboxes, shifts and promotions.",
-    [
-      "POS & returns",
-      "Stock",
-      "Cashbox",
-      "Promotions",
-      "Financial controls",
-    ],
+    ["POS & returns", "Stock", "Cashbox", "Promotions", "Financial controls"],
     "orange",
   ],
   [
@@ -150,13 +127,7 @@ const projects = [
     "Hospital Management System",
     Layers3,
     "Enterprise architecture covering clinical, administrative, financial, inventory and HR domains with RBAC and auditability.",
-    [
-      "Clinical",
-      "Finance",
-      "Inventory",
-      "HR",
-      "Identity & audit",
-    ],
+    ["Clinical", "Finance", "Inventory", "HR", "Identity & audit"],
     "cyan",
   ],
 ];
@@ -174,10 +145,8 @@ export default function Home() {
           <a href="#work">Work</a>
           <a href="#skills">Capabilities</a>
           <a href="#about">About</a>
-
           <a className="cta" href="#contact">
-            Start a project
-            <ArrowUpRight size={15} />
+            Start a project <ArrowUpRight size={15} />
           </a>
         </div>
       </nav>
@@ -198,8 +167,7 @@ export default function Home() {
 
         <div className="actions">
           <a className="primary" href="#work">
-            Explore selected work
-            <ArrowUpRight size={17} />
+            Explore selected work <ArrowUpRight size={17} />
           </a>
 
           <a
@@ -208,25 +176,19 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <Github size={17} />
-            GitHub
+            <Github size={17} /> GitHub
           </a>
         </div>
 
         <div className="stats">
           <b>
-            10
-            <span>Featured systems & architectures</span>
+            10<span>Featured systems & architectures</span>
           </b>
-
           <b>
-            Full-stack
-            <span>Architecture to deployment</span>
+            Full-stack<span>Architecture to deployment</span>
           </b>
-
           <b>
-            Arabic / English
-            <span>Bilingual product experience</span>
+            Arabic / English<span>Bilingual product experience</span>
           </b>
         </div>
       </section>
@@ -248,25 +210,45 @@ export default function Home() {
         <div className="grid">
           {projects.map(([k, t, I, d, c, a]: any, i) => (
             <article key={t}>
-              <div className={"visual " + a}>
-                <I size={32} />
+              {i === 0 ? (
+                <Link
+                  href="/projects/dialysis-management-system"
+                  className="project-real-visual"
+                  aria-label="View Dialysis Operations Management System case study"
+                >
+                  <Image
+                    src="/images/dialysis/01-dashboard-hero.png"
+                    alt="Dialysis Operations Management System operational dashboard"
+                    fill
+                    priority
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                  />
 
-                <span>
-                  CASE STUDY / {String(i + 1).padStart(2, "0")}
-                </span>
+                  <div className="project-real-overlay">
+                    <span>
+                      <Stethoscope size={22} />
+                      Healthcare Operations
+                    </span>
 
-                <div className="mock">
-                  <i />
-                  <i />
-                  <i />
+                    <b>CASE STUDY / 01</b>
+                  </div>
+                </Link>
+              ) : (
+                <div className={"visual " + a}>
+                  <I size={32} />
+                  <span>CASE STUDY / {String(i + 1).padStart(2, "0")}</span>
+
+                  <div className="mock">
+                    <i />
+                    <i />
+                    <i />
+                  </div>
                 </div>
-              </div>
+              )}
 
               <div className="body">
                 <small>{k}</small>
-
                 <h3>{t}</h3>
-
                 <p>{d}</p>
 
                 <div className="caps">
@@ -296,15 +278,11 @@ export default function Home() {
       <section id="skills" className="dark">
         <div className="shell">
           <small>CAPABILITIES</small>
-
           <h2>Engineering beyond the interface.</h2>
 
           <div className="skills">
             {[
-              [
-                "Backend Engineering",
-                "Node.js · Express · TypeScript · REST APIs",
-              ],
+              ["Backend Engineering", "Node.js · Express · TypeScript · REST APIs"],
               [
                 "Data & Persistence",
                 "PostgreSQL · SQLite · schema design · migrations",
@@ -355,7 +333,6 @@ export default function Home() {
 
       <section id="contact" className="shell contact">
         <small>LET&apos;S BUILD</small>
-
         <h2>Have an operational problem that needs software?</h2>
 
         <p>
@@ -365,8 +342,7 @@ export default function Home() {
 
         <div className="actions">
           <a className="primary" href="mailto:">
-            <Mail size={17} />
-            Contact me
+            <Mail size={17} /> Contact me
           </a>
 
           <a
@@ -375,8 +351,7 @@ export default function Home() {
             target="_blank"
             rel="noreferrer"
           >
-            <Github size={17} />
-            GitHub
+            <Github size={17} /> GitHub
           </a>
         </div>
       </section>
