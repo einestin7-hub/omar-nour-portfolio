@@ -273,7 +273,7 @@ export default function Home() {
                     <b>CASE STUDY / 02</b>
                   </div>
                 </Link>
-              ) : i === 3 ? (
+                            ) : i === 3 ? (
                 <Link
                   href="/projects/retail-pos"
                   className="project-real-visual"
@@ -293,6 +293,28 @@ export default function Home() {
                     </span>
 
                     <b>CASE STUDY / 04</b>
+                  </div>
+                </Link>
+              ) : i === 5 ? (
+                <Link
+                  href="/projects/internal-medicine-clinic"
+                  className="project-real-visual"
+                  aria-label="View Internal Medicine and Nephrology Clinic System case study"
+                >
+                  <Image
+                    src="/images/internal-medicine-clinic/01-dashboard.png"
+                    alt="Internal Medicine and Nephrology Clinic System dashboard"
+                    fill
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                  />
+
+                  <div className="project-real-overlay">
+                    <span>
+                      <HeartPulse size={22} />
+                      Clinical Workflow
+                    </span>
+
+                    <b>CASE STUDY / 06</b>
                   </div>
                 </Link>
               ) : (
@@ -325,14 +347,16 @@ export default function Home() {
                   ))}
                 </div>
 
-                {(i === 0 || i === 1 || i === 3) && (
+                {(i === 0 || i === 1 || i === 3 || i === 5) && (
                   <Link
                     href={
                       i === 0
                         ? "/projects/dialysis-management-system"
                         : i === 1
                           ? "/projects/pharmaos"
-                          : "/projects/retail-pos"
+                          : i === 3
+                            ? "/projects/retail-pos"
+                            : "/projects/internal-medicine-clinic"
                     }
                     className="case-study-link"
                   >
